@@ -25,46 +25,50 @@ class _ConversasScreenState extends State<ConversasScreen> {
               final Conversa conversa = conversas[index];
               final user = conversa.getFrom(userInfo);
               final lastMsg = conversa.lastMsg;
-
-              return Column(
-                children: <Widget>[
-                  index == 0 ? Container() : Divider(),
-                  ListTile(
-                    leading: CircleAvatar(
-                        foregroundColor: Colors.blue,
-                        backgroundColor: Colors.grey,
-                        backgroundImage: NetworkImage(user.avatar)
-                    ),
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          user.nome,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
+              return GestureDetector(
+                onTap: () {
+                  print('clicou ${user.nome}');
+                },
+                child: Column(
+                  children: <Widget>[
+                    index == 0 ? Container() : Divider(),
+                    ListTile(
+                      leading: CircleAvatar(
+                          foregroundColor: Colors.blue,
+                          backgroundColor: Colors.grey,
+                          backgroundImage: NetworkImage(user.avatar)
+                      ),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            user.nome,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold
+                            ),
                           ),
-                        ),
-                        Text(
-                          lastMsg.getDataFormatada() ?? '',
+                          Text(
+                            lastMsg.getDataFormatada() ?? '',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14.0
+                            ),
+                          )
+                        ],
+                      ),
+                      subtitle: Container(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text(
+                          conversa.lastMsg.msg ?? '',
                           style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 14.0
+                              fontSize: 15.0
                           ),
-                        )
-                      ],
-                    ),
-                    subtitle: Container(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: Text(
-                        conversa.lastMsg.msg ?? '',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15.0
                         ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               );
             }
         );
