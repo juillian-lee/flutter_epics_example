@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_epics/auth/auth_screen.dart';
-import 'package:flutter_app_epics/home_screen.dart';
+import 'package:flutter_app_epics/ui/auth/auth_screen.dart';
+import 'package:flutter_app_epics/ui/home_screen.dart';
 import 'package:flutter_app_epics/store/app_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_app_epics/store/app_store.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_epics/auth/auth_form.dart';
-import 'package:flutter_app_epics/auth/auth_screen_vm.dart';
 import 'package:flutter_app_epics/store/app_state.dart';
+import 'package:flutter_app_epics/ui/auth/auth_form.dart';
+import 'package:flutter_app_epics/ui/auth/auth_screen_vm.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class AuthScreen extends StatefulWidget {

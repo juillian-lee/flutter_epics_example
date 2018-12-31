@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_epics/chat/conversas/conversas_screen_vm.dart';
+import 'package:flutter_app_epics/ui/conversas/conversas_screen_vm.dart';
 import 'package:flutter_app_epics/models/conversa.dart';
 import 'package:flutter_app_epics/store/app_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
