@@ -27,6 +27,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'conversasState',
       serializers.serialize(object.conversasState,
           specifiedType: const FullType(ConversasState)),
+      'conversaState',
+      serializers.serialize(object.conversaState,
+          specifiedType: const FullType(ConversaState)),
     ];
 
     return result;
@@ -55,6 +58,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.conversasState.replace(serializers.deserialize(value,
               specifiedType: const FullType(ConversasState)) as ConversasState);
           break;
+        case 'conversaState':
+          result.conversaState.replace(serializers.deserialize(value,
+              specifiedType: const FullType(ConversaState)) as ConversaState);
+          break;
       }
     }
 
@@ -69,11 +76,14 @@ class _$AppState extends AppState {
   final AuthState authState;
   @override
   final ConversasState conversasState;
+  @override
+  final ConversaState conversaState;
 
   factory _$AppState([void updates(AppStateBuilder b)]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.isLoading, this.authState, this.conversasState})
+  _$AppState._(
+      {this.isLoading, this.authState, this.conversasState, this.conversaState})
       : super._() {
     if (isLoading == null) {
       throw new BuiltValueNullFieldError('AppState', 'isLoading');
@@ -83,6 +93,9 @@ class _$AppState extends AppState {
     }
     if (conversasState == null) {
       throw new BuiltValueNullFieldError('AppState', 'conversasState');
+    }
+    if (conversaState == null) {
+      throw new BuiltValueNullFieldError('AppState', 'conversaState');
     }
   }
 
@@ -99,13 +112,16 @@ class _$AppState extends AppState {
     return other is AppState &&
         isLoading == other.isLoading &&
         authState == other.authState &&
-        conversasState == other.conversasState;
+        conversasState == other.conversasState &&
+        conversaState == other.conversaState;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, isLoading.hashCode), authState.hashCode),
-        conversasState.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, isLoading.hashCode), authState.hashCode),
+            conversasState.hashCode),
+        conversaState.hashCode));
   }
 
   @override
@@ -113,7 +129,8 @@ class _$AppState extends AppState {
     return (newBuiltValueToStringHelper('AppState')
           ..add('isLoading', isLoading)
           ..add('authState', authState)
-          ..add('conversasState', conversasState))
+          ..add('conversasState', conversasState)
+          ..add('conversaState', conversaState))
         .toString();
   }
 }
@@ -136,6 +153,12 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set conversasState(ConversasStateBuilder conversasState) =>
       _$this._conversasState = conversasState;
 
+  ConversaStateBuilder _conversaState;
+  ConversaStateBuilder get conversaState =>
+      _$this._conversaState ??= new ConversaStateBuilder();
+  set conversaState(ConversaStateBuilder conversaState) =>
+      _$this._conversaState = conversaState;
+
   AppStateBuilder();
 
   AppStateBuilder get _$this {
@@ -143,6 +166,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _isLoading = _$v.isLoading;
       _authState = _$v.authState?.toBuilder();
       _conversasState = _$v.conversasState?.toBuilder();
+      _conversaState = _$v.conversaState?.toBuilder();
       _$v = null;
     }
     return this;
@@ -169,7 +193,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
           new _$AppState._(
               isLoading: isLoading,
               authState: authState.build(),
-              conversasState: conversasState.build());
+              conversasState: conversasState.build(),
+              conversaState: conversaState.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -177,6 +202,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         authState.build();
         _$failedField = 'conversasState';
         conversasState.build();
+        _$failedField = 'conversaState';
+        conversaState.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AppState', _$failedField, e.toString());

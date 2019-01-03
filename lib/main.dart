@@ -6,10 +6,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_app_epics/store/app_store.dart';
 import 'package:redux/redux.dart';
 
-void main() => runApp(MaterialApp(
-  title: "Chat App",
-  home: MyApp(),
-));
+void main() => runApp(MyApp());
 
 
 class MyAppVM {
@@ -39,10 +36,11 @@ class MyApp extends StatelessWidget {
       child: StoreConnector<AppState, MyAppVM>(
         converter: (store) => MyAppVM.fromStore(store),
         builder: (context, MyAppVM state) {
-          if(state.token == null || state.token.isEmpty) {
-            return AuthScreen();
-          }
-          return HomeScreen();
+          return MaterialApp(
+            title: "Chat App",
+            home: (state.token == null || state.token.isEmpty) ?
+              AuthScreen() : HomeScreen(),
+          );
         },
       )
     );

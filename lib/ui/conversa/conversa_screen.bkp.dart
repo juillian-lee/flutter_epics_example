@@ -77,84 +77,81 @@ class Bubble extends StatelessWidget {
 class ConversaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  StoreBuilder(
-      builder: (context, Store<AppState> store) {
-        final conversa = store.state.conversaState.conversa;
-        final userInfo = store.state.authState.userInfo;
-        final user = conversa.getFrom(userInfo);
-        return Scaffold(
-            backgroundColor: Colors.blueGrey.shade50,
-            appBar: AppBar(
-              titleSpacing: 0.0,
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
-              elevation: .9,
-              title: Row(
-                children: <Widget>[
-                  CircleAvatar(
-                      foregroundColor: Colors.blue,
-                      backgroundColor: Colors.grey,
-                      backgroundImage: NetworkImage(user.avatar)
-                  ),
-                  Text(
-                    '${user.nome}',
-                    style: TextStyle(color: Colors.blue),
-                  )
-                ],
-              ),
-              leading: IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.blue,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.more_vert,
-                    color: Colors.blue,
-                  ),
-                  onPressed: () {},
-                )
-              ],
+    //StoreProvider.of(context).state;
+    return Scaffold(
+        backgroundColor: Colors.blueGrey.shade50,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: .9,
+          title: Text(
+            'Putra',
+            style: TextStyle(color: Colors.blue),
+          ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.blue,
             ),
-            body: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Bubble(
-                    message: 'Hi there, this is a message',
-                    time: '12:00',
-                    delivered: true,
-                    isMe: false,
-                  ),
-                  Bubble(
-                    message: 'Whatsapp like bubble talk',
-                    time: '12:01',
-                    delivered: true,
-                    isMe: false,
-                  ),
-                  Bubble(
-                    message: 'Nice one, Flutter is awesome',
-                    time: '12:00',
-                    delivered: true,
-                    isMe: true,
-                  ),
-                  Bubble(
-                    message: 'I\'ve told you so dude!',
-                    time: '12:00',
-                    delivered: true,
-                    isMe: false,
-                  ),
-                ],
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.videocam,
+                color: Colors.blue,
               ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.call,
+                color: Colors.blue,
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.more_vert,
+                color: Colors.blue,
+              ),
+              onPressed: () {},
             )
-        );
-      }
+          ],
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Bubble(
+                message: 'Hi there, this is a message',
+                time: '12:00',
+                delivered: true,
+                isMe: false,
+              ),
+              Bubble(
+                message: 'Whatsapp like bubble talk',
+                time: '12:01',
+                delivered: true,
+                isMe: false,
+              ),
+              Bubble(
+                message: 'Nice one, Flutter is awesome',
+                time: '12:00',
+                delivered: true,
+                isMe: true,
+              ),
+              Bubble(
+                message: 'I\'ve told you so dude!',
+                time: '12:00',
+                delivered: true,
+                isMe: false,
+              ),
+            ],
+          ),
+        )
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_epics/ui/conversa/conversa_screen.dart';
 import 'package:flutter_app_epics/ui/conversas/conversas_screen_vm.dart';
 import 'package:flutter_app_epics/models/conversa.dart';
 import 'package:flutter_app_epics/store/app_state.dart';
@@ -11,10 +12,15 @@ class ConversasScreen extends StatefulWidget {
 }
 
 class _ConversasScreenState extends State<ConversasScreen> {
+
+  void onClickConversa() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConversaScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ConversasScreenVM>(
-      converter: (store) => ConversasScreenVM.fromStore(store),
+      converter: ConversasScreenVM.fromStore,
       builder: (context, state) {
         final conversas = state.conversas;
         final userInfo = state.userInfo;
@@ -27,7 +33,8 @@ class _ConversasScreenState extends State<ConversasScreen> {
               final lastMsg = conversa.lastMsg;
               return GestureDetector(
                 onTap: () {
-                  print('clicou ${user.nome}');
+                  state.loadConversa(conversa);
+                  onClickConversa();
                 },
                 child: Column(
                   children: <Widget>[
