@@ -5,7 +5,13 @@ import 'package:flutter_app_epics/store/conversas/conversas_actions.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return StoreBuilder(

@@ -8,7 +8,6 @@ import 'package:redux/redux.dart';
 
 void main() => runApp(MyApp());
 
-
 class MyAppVM {
   bool isLoading;
   String token;
@@ -18,31 +17,28 @@ class MyAppVM {
     @required this.token,
   });
 
-
   static MyAppVM fromStore(Store<AppState> store) {
     return MyAppVM(
-      isLoading: store.state.authState.isLoading,
-      token: store.state.authState.token
-    );
+        isLoading: store.state.authState.isLoading,
+        token: store.state.authState.token);
   }
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return StoreProvider(
       store: store,
-      child: StoreConnector<AppState, MyAppVM>(
-        converter: (store) => MyAppVM.fromStore(store),
-        builder: (context, MyAppVM state) {
-          return MaterialApp(
-            title: "Chat App",
-            home: (state.token == null || state.token.isEmpty) ?
-              AuthScreen() : HomeScreen(),
-          );
-        },
-      )
+      child: MaterialApp(
+        title: "Chat App",
+        home: Container(
+            child: StoreConnector<AppState, MyAppVM>(
+                converter: (store) => MyAppVM.fromStore(store),
+                builder: (context, MyAppVM state) {
+                  var isLoginNOK = state.token == null || state.token.isEmpty;
+                  return isLoginNOK ? AuthScreen() : HomeScreen();
+                })),
+      ),
     );
   }
 }
